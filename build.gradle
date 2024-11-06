@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.wade.tournament'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'  // Optional for security features
+    runtimeOnly 'org.postgresql:postgresql'  // Database driver for PostgreSQL
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.h2database:h2'  // H2 for testing (use your database in production)
+    testImplementation 'org.junit.jupiter:junit-jupiter-api' // JUnit 5 support
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+    
+    // Add the Jakarta Persistence dependency
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'  // Updated to Jakarta Persistence
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
